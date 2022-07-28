@@ -8,11 +8,19 @@ const Test = () => {
   // SPEECH RECOGNITION
   const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
+
   const recognition = new SpeechRecognition();
+
+  if (isSpeaking) {
+    recognition.start();
+    recognition.continuous = true;
+  } else {
+    recognition.stop();
+  }
 
   // START FUNCTION
   recognition.onstart = function () {
-    setIsSpeaking(true);
+    // setIsSpeaking(true);
     console.log("vr active");
   };
   // GET RESULT
@@ -20,28 +28,59 @@ const Test = () => {
     let current = e.resultIndex;
     let transcript = e.results[current][0].transcript;
     console.log(transcript);
+
+    check_response(transcript, exercise);
   };
+
   // STOP FUNCTION
   recognition.onend = function () {
     setIsSpeaking(false);
     console.log("vr deactivated");
   };
 
-  useEffect(() => {
-    startLesson(exercise);
-    function startLesson(lesson) {
-      setTimeout(ai_speak("Let's begin, pronounce this sentence"), 3000);
+  function check_response(response, exercise) {
+    let answer = response.split(" ");
+    let sentence = exercise.split(" ");
+
+    if (answer.length === sentence.length) {
+      let wrongWords = [];
+      for (let i = 0; i < answer.length; i++) {
+        const ans = answer[i];
+        if (ans !== sentence[i]) {
+          wrongWords.push(i);
+        }
+      }
+      if (wrongWords.length > 1) {
+        ai_speak(`Try pronouncing this word as ${sentence[wrongWords[0]]}`);
+        // setIsSpeaking(true);
+      } else {
+        ai_speak("That's correct, well done", false);
+      }
+    } else if (answer.length > sentence.length) {
+      ai_speak("Try reading the sentence again, more gently this time");
+    } else if (answer.length < sentence.length) {
+      ai_speak("Try reading the sentence again, more audibly this time");
     }
-  }, [exercise]);
+  }
+
+  useEffect(() => {
+    ai_speak("Let's begin, pronounce this sentence");
+  }, []);
 
   // AI SPEECH
-  function ai_speak(message) {
+  function ai_speak(message, respond = true) {
     const speech = new SpeechSynthesisUtterance();
     speech.text = message;
-    speech.volume = 0.8;
+    speech.volume = 0.2;
     speech.rate = 1;
     speech.pitch = 2;
-    return window.speechSynthesis.speak(speech);
+    window.speechSynthesis.speak(speech);
+    if (respond) {
+      speech.onend = function (e) {
+        setIsSpeaking(true);
+      };
+    }
+    console.log(speech);
   }
 
   return (
