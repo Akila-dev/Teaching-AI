@@ -6,8 +6,8 @@ const Navbar = () => {
   return (
     <div className="py-5 fixed bg-white shadow-lg w-full rounded-b-2xl">
       <div className="container flex justify-between items-center">
-        <img src={logo} alt="logo" className="w-1/2 md:w-full" />
-        <div className="p-5 bg-blue-800 rounded-full">
+        <img src={logo} alt="logo" className="w-20 md:w-24" />
+        <div className="p-4 md:p-5 bg-blue-800 rounded-full">
           <BsQuestionLg className="text-white" />
         </div>
       </div>
