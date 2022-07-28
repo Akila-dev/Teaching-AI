@@ -12,7 +12,7 @@ const Test = () => {
     <>
       {/* The num variable is to get the ammount of excercises */}
       {/* The active_id variable is to get the index of the active/present excercise */}
-      <Header num={10} active_id={1} />
+      <Header />
       <Exercise />
       <ArrowBtns />
     </>

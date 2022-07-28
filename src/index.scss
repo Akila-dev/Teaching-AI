@@ -14,21 +14,47 @@ body {
 
 .container {
   padding: 0 4rem;
+  margin: 0 auto;
+}
+
+.nav-btn-container {
+  @apply p-3 lg:p-4 bg-blue-800 rounded-full text-white;
+  .nav-btn {
+    @apply text-white text-[30px] lg:text-[40px];
+  }
+}
+
+.exercise-heading {
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 70px;
 }
 
 @media screen and (max-width: 1024px) {
   .container {
     padding: 0 3rem;
   }
+  .exercise-heading {
+    font-size: 60px;
+    line-height: 70px;
+  }
 }
 @media screen and (max-width: 750px) {
   .container {
     padding: 0 2.5rem;
+  }
+  .exercise-heading {
+    font-size: 40px;
+    line-height: 50px;
   }
 }
 
 @media screen and (max-width: 550px) {
   .container {
     padding: 0 1.2rem;
+  }
+  .exercise-heading {
+    font-size: 40px;
+    line-height: 50px;
   }
 }
