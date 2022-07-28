@@ -8,6 +8,20 @@ const Test = () => {
   //     active: false,
   //   },
   // ];
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+
+  recognition.onstart = function () {
+    console.log("vr active");
+  };
+  recognition.onend = function () {
+    console.log("vr deactivated");
+  };
+  // recognition.start();
+  // recognition.stop();
+  // recognition.continuous = true
+
   return (
     <>
       {/* The num variable is to get the ammount of excercises */}
