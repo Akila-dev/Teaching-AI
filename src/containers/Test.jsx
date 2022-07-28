@@ -2,12 +2,12 @@ import React from "react";
 import { ArrowBtns, Header, Exercise } from "../components";
 
 const Test = () => {
-  const exercises = [
-    {
-      objective: "She is the president",
-      active: false,
-    },
-  ];
+  // const exercises = [
+  //   {
+  //     objective: "She is the president",
+  //     active: false,
+  //   },
+  // ];
   return (
     <>
       {/* The num variable is to get the ammount of excercises */}
