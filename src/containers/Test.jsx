@@ -5,6 +5,8 @@ const Test = () => {
   return (
     <>
       <Header />
+      <Exercise />
+      <ArrowBtns />
     </>
   );
 };
