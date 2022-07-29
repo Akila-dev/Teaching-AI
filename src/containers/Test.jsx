@@ -48,11 +48,13 @@ const Test = () => {
         const ans = answer[i];
         if (ans !== sentence[i]) {
           wrongWordIndex = i;
+          ai_speak(`Try pronouncing this word as ${ans}`);
         }
       }
       if (wrongWordIndex >= 0) {
-        ai_speak(`Try pronouncing this word as ${sentence[wrongWordIndex]}`);
+        // ai_speak(`Try pronouncing this word as ${sentence[wrongWordIndex]}`);
         // setIsSpeaking(true);
+        wrongWordIndex = wrongWordIndex + 1;
       } else {
         ai_speak("That's correct, well done", false);
       }
