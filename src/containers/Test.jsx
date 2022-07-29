@@ -21,13 +21,13 @@ const Test = () => {
   // START FUNCTION
   recognition.onstart = function () {
     // setIsSpeaking(true);
-    console.log("vr active");
+    // console.log("vr active");
   };
   // GET RESULT
   recognition.onresult = function (e) {
     let current = e.resultIndex;
     let transcript = e.results[current][0].transcript;
-    console.log(transcript);
+    // console.log(transcript);
 
     check_response(transcript, exercise);
   };
@@ -35,7 +35,7 @@ const Test = () => {
   // STOP FUNCTION
   recognition.onend = function () {
     setIsSpeaking(false);
-    console.log("vr deactivated");
+    // console.log("vr deactivated");
   };
 
   function check_response(response, exercise) {
@@ -71,16 +71,19 @@ const Test = () => {
   function ai_speak(message, respond = true) {
     const speech = new SpeechSynthesisUtterance();
     speech.text = message;
+    const allVoices = speechSynthesis.getVoices();
+    // console.log(allVoices);
+    speech.voice = allVoices[2];
     speech.volume = 0.2;
     speech.rate = 1;
-    speech.pitch = 2;
+    speech.pitch = 1;
     window.speechSynthesis.speak(speech);
     if (respond) {
       speech.onend = function (e) {
         setIsSpeaking(true);
       };
     }
-    console.log(speech);
+    // console.log(speech);
   }
 
   return (
