@@ -15,7 +15,6 @@ const Test = () => {
     window.SpeechRecognition || window.webkitSpeechRecognition;
 
   const recognition = new SpeechRecognition();
-  // recognition.continuous = true;
 
   useEffect(() => {
     ai_speak("Let's begin, pronounce this sentence");
@@ -38,6 +37,7 @@ const Test = () => {
   };
   // GET RESULT
   recognition.onresult = function (e) {
+    setIsSpeaking(false);
     let current = e.resultIndex;
     let transcript = e.results[current][0].transcript;
     console.log(transcript);
@@ -52,7 +52,8 @@ const Test = () => {
   };
 
   function check_response(response, exercise) {
-    let properResponse = response.substring(0, response.length - 1);
+    let properResponse =
+      response.substring(0, response.length - 1) || response.splice(0, -1);
     let optimizedResponse = properResponse.toLowerCase();
     let optimizedExercise = exercise.toLowerCase();
     let answer = optimizedResponse.split(" ");
@@ -76,10 +77,8 @@ const Test = () => {
       } else {
         ai_speak("That's correct, well done", false);
       }
-    } else if (answer.length > sentence.length) {
-      ai_speak("Almost there, try pronouncing the words carefully and audibly");
-    } else if (answer.length < sentence.length) {
-      ai_speak("Almost there, try pronouncing the words carefully and audibly");
+    } else {
+      ai_speak("Make sure you start speaking after the mic is active");
     }
   }
 
@@ -90,7 +89,7 @@ const Test = () => {
     const allVoices = speechSynthesis.getVoices();
     // console.log(allVoices);
     speech.voice = allVoices[0];
-    speech.volume = 0.8;
+    speech.volume = 0.5;
     speech.rate = 1;
     speech.pitch = 1;
     window.speechSynthesis.speak(speech);
