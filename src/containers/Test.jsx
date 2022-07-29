@@ -27,7 +27,7 @@ const Test = () => {
   recognition.onresult = function (e) {
     let current = e.resultIndex;
     let transcript = e.results[current][0].transcript;
-    // console.log(transcript);
+    console.log(transcript);
 
     check_response(transcript, exercise);
   };
@@ -35,23 +35,29 @@ const Test = () => {
   // STOP FUNCTION
   recognition.onend = function () {
     setIsSpeaking(false);
-    // console.log("vr deactivated");
+    console.log("vr deactivated");
   };
 
   function check_response(response, exercise) {
-    let answer = response.split(" ");
-    let sentence = exercise.split(" ");
+    let properResponse = response.substring(0, response.length - 1);
+    let optimizedResponse = properResponse.toLowerCase();
+    let optimizedExercise = exercise.toLowerCase();
+    let answer = optimizedResponse.split(" ");
+    let sentence = optimizedExercise.split(" ");
+    // console.log(properResponse);
+    // console.log(answer);
+    // console.log(sentence);
 
     if (answer.length === sentence.length) {
-      let wrongWordIndex = [];
+      let wrongWord = [];
       for (let i = 0; i < answer.length; i++) {
         const ans = answer[i];
         if (ans !== sentence[i]) {
-          wrongWordIndex.push(i);
+          wrongWord.push(i);
         }
       }
-      if (wrongWordIndex.length >= 0) {
-        ai_speak(`Try pronouncing this word as ${sentence[wrongWordIndex[0]]}`);
+      if (wrongWord.length > 0) {
+        ai_speak(`Try pronouncing this word as ${sentence[wrongWord[0]]}`);
         // setIsSpeaking(true);
       } else {
         ai_speak("That's correct, well done", false);
@@ -73,8 +79,8 @@ const Test = () => {
     speech.text = message;
     const allVoices = speechSynthesis.getVoices();
     // console.log(allVoices);
-    speech.voice = allVoices[0];
-    speech.volume = 0.2;
+    speech.voice = allVoices[1];
+    speech.volume = 0.8;
     speech.rate = 0.8;
     speech.pitch = 1;
     window.speechSynthesis.speak(speech);
@@ -83,7 +89,7 @@ const Test = () => {
         setIsSpeaking(true);
       };
     }
-    // console.log(speech);
+    console.log(speech.text);
   }
 
   return (
