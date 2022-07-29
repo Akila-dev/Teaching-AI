@@ -52,8 +52,7 @@ const Test = () => {
   };
 
   function check_response(response, exercise) {
-    let properResponse =
-      response.substring(0, response.length - 1) || response.splice(0, -1);
+    let properResponse = response.substring(0, response.length - 1);
     let optimizedResponse = properResponse.toLowerCase();
     let optimizedExercise = exercise.toLowerCase();
     let answer = optimizedResponse.split(" ");
