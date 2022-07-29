@@ -43,15 +43,15 @@ const Test = () => {
     let sentence = exercise.split(" ");
 
     if (answer.length === sentence.length) {
-      let wrongWords = [];
+      let wrongWordIndex = -1;
       for (let i = 0; i < answer.length; i++) {
         const ans = answer[i];
         if (ans !== sentence[i]) {
-          wrongWords.push(i);
+          wrongWordIndex = i;
         }
       }
-      if (wrongWords.length > 1) {
-        ai_speak(`Try pronouncing this word as ${sentence[wrongWords[0]]}`);
+      if (wrongWordIndex >= 0) {
+        ai_speak(`Try pronouncing this word as ${sentence[wrongWordIndex]}`);
         // setIsSpeaking(true);
       } else {
         ai_speak("That's correct, well done", false);
