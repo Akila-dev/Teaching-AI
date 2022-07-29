@@ -43,18 +43,16 @@ const Test = () => {
     let sentence = exercise.split(" ");
 
     if (answer.length === sentence.length) {
-      let wrongWordIndex = -1;
+      let wrongWordIndex = [];
       for (let i = 0; i < answer.length; i++) {
         const ans = answer[i];
         if (ans !== sentence[i]) {
-          wrongWordIndex = i;
-          ai_speak(`Try pronouncing this word as ${ans}`);
+          wrongWordIndex.push(i);
         }
       }
-      if (wrongWordIndex >= 0) {
-        // ai_speak(`Try pronouncing this word as ${sentence[wrongWordIndex]}`);
+      if (wrongWordIndex.length >= 0) {
+        ai_speak(`Try pronouncing this word as ${sentence[wrongWordIndex[0]]}`);
         // setIsSpeaking(true);
-        wrongWordIndex = wrongWordIndex + 1;
       } else {
         ai_speak("That's correct, well done", false);
       }
@@ -75,7 +73,7 @@ const Test = () => {
     speech.text = message;
     const allVoices = speechSynthesis.getVoices();
     // console.log(allVoices);
-    speech.voice = allVoices[2];
+    speech.voice = allVoices[0];
     speech.volume = 0.2;
     speech.rate = 0.8;
     speech.pitch = 1;
