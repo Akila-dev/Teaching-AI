@@ -75,7 +75,7 @@ const Test = () => {
     // console.log(allVoices);
     speech.voice = allVoices[2];
     speech.volume = 0.2;
-    speech.rate = 1.2;
+    speech.rate = 0.8;
     speech.pitch = 1;
     window.speechSynthesis.speak(speech);
     if (respond) {
