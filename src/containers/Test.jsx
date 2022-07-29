@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { ArrowBtns, Header, Exercise } from "../components";
 
@@ -16,11 +17,18 @@ const Test = () => {
   const recognition = new SpeechRecognition();
   // recognition.continuous = true;
 
-  if (isSpeaking) {
-    recognition.start();
-  } else {
-    recognition.stop();
-  }
+  useEffect(() => {
+    ai_speak("Let's begin, pronounce this sentence");
+  }, []);
+
+  useEffect(() => {
+    if (isSpeaking) {
+      recognition.start();
+      setMakeCorrection(false);
+    } else {
+      recognition.stop();
+    }
+  }, [isSpeaking]);
 
   // START FUNCTION
   recognition.onstart = function () {
@@ -75,10 +83,6 @@ const Test = () => {
     }
   }
 
-  useEffect(() => {
-    ai_speak("Let's begin, pronounce this sentence");
-  }, []);
-
   // AI SPEECH
   function ai_speak(message, respond = true) {
     const speech = new SpeechSynthesisUtterance();
@@ -99,26 +103,16 @@ const Test = () => {
   }
 
   function correctUser(wrongWord) {
-    setMakeCorrection(true);
-    while (makeCorrection) {
-      setIsSpeaking(false);
-    }
     setCorrection(wrongWord);
-    const speech = new SpeechSynthesisUtterance();
-    speech.text = `Try pronouncing the word as ${wrongWord}`;
-    const allVoices = speechSynthesis.getVoices();
-    // console.log(allVoices);
-    speech.voice = allVoices[0];
-    speech.volume = 0.8;
-    speech.rate = 1;
-    speech.pitch = 1;
-    window.speechSynthesis.speak(speech);
-    speech.onend = function (e) {
-      setMakeCorrection(false);
-      setIsSpeaking(true);
-    };
-    console.log(speech.text);
+    setMakeCorrection(true);
+    ai_speak(`Try pronouncing the word as ${wrongWord}`);
   }
+
+  // function exit() {
+  //   setMakeCorrection(false);
+  //   setIsSpeaking(false);
+  //   ai_speak.stop = true;
+  // }
 
   return (
     <>
