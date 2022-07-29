@@ -3,25 +3,30 @@ import { ArrowBtns, Header, Exercise } from "../components";
 
 const Test = () => {
   const exercise = "She is the President";
+  let displayText = exercise;
+  // let correction = "";
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [correction, setCorrection] = useState("");
+  const [makeCorrection, setMakeCorrection] = useState(false);
 
   // SPEECH RECOGNITION
   const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
 
   const recognition = new SpeechRecognition();
+  // recognition.continuous = true;
 
   if (isSpeaking) {
     recognition.start();
-    recognition.continuous = true;
   } else {
     recognition.stop();
   }
 
   // START FUNCTION
   recognition.onstart = function () {
+    // recognition.continuous = true;
     // setIsSpeaking(true);
-    // console.log("vr active");
+    console.log("vr active");
   };
   // GET RESULT
   recognition.onresult = function (e) {
@@ -44,9 +49,9 @@ const Test = () => {
     let optimizedExercise = exercise.toLowerCase();
     let answer = optimizedResponse.split(" ");
     let sentence = optimizedExercise.split(" ");
-    // console.log(properResponse);
-    // console.log(answer);
-    // console.log(sentence);
+    console.log(properResponse);
+    console.log(answer);
+    console.log(sentence);
 
     if (answer.length === sentence.length) {
       let wrongWord = [];
@@ -57,15 +62,16 @@ const Test = () => {
         }
       }
       if (wrongWord.length > 0) {
-        ai_speak(`Try pronouncing this word as ${sentence[wrongWord[0]]}`);
-        // setIsSpeaking(true);
+        // correction = sentence[wrongWord[0]];
+        // ai_speak(`Try pronouncing this word as ${sentence[wrongWord[0]]}`);
+        correctUser(sentence[wrongWord[0]]);
       } else {
         ai_speak("That's correct, well done", false);
       }
     } else if (answer.length > sentence.length) {
-      ai_speak("Try reading the sentence again, more gently this time");
+      ai_speak("Almost there, try pronouncing the words carefully and audibly");
     } else if (answer.length < sentence.length) {
-      ai_speak("Try reading the sentence again, more audibly this time");
+      ai_speak("Almost there, try pronouncing the words carefully and audibly");
     }
   }
 
@@ -79,16 +85,38 @@ const Test = () => {
     speech.text = message;
     const allVoices = speechSynthesis.getVoices();
     // console.log(allVoices);
-    speech.voice = allVoices[1];
+    speech.voice = allVoices[0];
     speech.volume = 0.8;
-    speech.rate = 0.8;
+    speech.rate = 1;
     speech.pitch = 1;
     window.speechSynthesis.speak(speech);
     if (respond) {
       speech.onend = function (e) {
         setIsSpeaking(true);
       };
+    } else console.log("done");
+    console.log(speech.text);
+  }
+
+  function correctUser(wrongWord) {
+    setMakeCorrection(true);
+    while (makeCorrection) {
+      setIsSpeaking(false);
     }
+    setCorrection(wrongWord);
+    const speech = new SpeechSynthesisUtterance();
+    speech.text = `Try pronouncing the word as ${wrongWord}`;
+    const allVoices = speechSynthesis.getVoices();
+    // console.log(allVoices);
+    speech.voice = allVoices[0];
+    speech.volume = 0.8;
+    speech.rate = 1;
+    speech.pitch = 1;
+    window.speechSynthesis.speak(speech);
+    speech.onend = function (e) {
+      setMakeCorrection(false);
+      setIsSpeaking(true);
+    };
     console.log(speech.text);
   }
 
@@ -97,7 +125,12 @@ const Test = () => {
       {/* The num variable is to get the ammount of excercises */}
       {/* The active_id variable is to get the index of the active/present excercise */}
       <Header />
-      <Exercise exercise={exercise} recording={isSpeaking} />
+      <Exercise
+        text={displayText}
+        recording={isSpeaking}
+        showCorrection={makeCorrection}
+        correction={correction}
+      />
       <ArrowBtns />
     </>
   );
