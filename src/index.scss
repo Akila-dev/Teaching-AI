@@ -30,13 +30,126 @@ body {
   line-height: 70px;
 }
 
+.sm-h1 {
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 50px;
+}
+
+// ANIMATION
+.pulse-blue {
+  box-shadow: 0 0 0 0 rgba(30, 64, 145, 1);
+  animation: pulse-blue 2s infinite ease;
+}
+@keyframes pulse-blue {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(30, 64, 145, 0.7);
+  }
+
+  90% {
+    transform: scale(1);
+    box-shadow: 0 0 0 15px rgba(30, 64, 145, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(30, 64, 145, 0);
+  }
+}
+.pulse-blue-sm {
+  text-shadow: 0 0 0 rgba(30, 64, 145, 1);
+  animation: pulse-blue-sm 2s infinite ease;
+}
+@keyframes pulse-blue-sm {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 0 rgba(30, 64, 145, 0.7);
+  }
+
+  90% {
+    transform: scale(1);
+    text-shadow: 0 0 10px rgba(30, 64, 145, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 0 rgba(30, 64, 145, 0);
+  }
+}
+.shake {
+  animation: shake 0.8s infinite;
+}
+@keyframes shake {
+  0% {
+    transform: skewX(-15deg);
+  }
+  5% {
+    transform: skewX(15deg);
+  }
+  10% {
+    transform: skewX(-15deg);
+  }
+  15% {
+    transform: skewX(15deg);
+  }
+  20% {
+    transform: skewX(0deg);
+  }
+  100% {
+    transform: skewX(0deg);
+  }
+}
+// @keyframes shake {
+//   0% {
+//     transform: skewX(-15deg);
+//   }
+//   5% {
+//     transform: skewX(15deg);
+//   }
+//   10% {
+//     transform: skewX(-15deg);
+//   }
+//   15% {
+//     transform: skewX(15deg);
+//   }
+//   20% {
+//     transform: skewX(0deg);
+//   }
+//   100% {
+//     transform: skewX(0deg);
+//   }
+// }
+// @keyframes shake {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   25% {
+//     transform: rotate(5deg);
+//   }
+//   50% {
+//     transform: rotate(0eg);
+//   }
+//   75% {
+//     transform: rotate(-5deg);
+//   }
+//   100% {
+//     transform: rotate(0deg);
+//   }
+// }
+
+// RESPONSIVENESS
 @media screen and (max-width: 1024px) {
   .container {
     padding: 0 3rem;
   }
   .exercise-heading {
-    font-size: 60px;
-    line-height: 70px;
+    font-size: 50px;
+    line-height: 60px;
+  }
+  .sm-h1 {
+    font-size: 30px;
+    line-height: 40px;
   }
 }
 @media screen and (max-width: 750px) {
@@ -47,14 +160,14 @@ body {
     font-size: 40px;
     line-height: 50px;
   }
+  .sm-h1 {
+    font-size: 25px;
+    line-height: 35px;
+  }
 }
 
 @media screen and (max-width: 550px) {
   .container {
     padding: 0 1.2rem;
-  }
-  .exercise-heading {
-    font-size: 40px;
-    line-height: 50px;
   }
 }

@@ -3,12 +3,17 @@ import React, { useState, useEffect } from "react";
 import { ArrowBtns, Header, Exercise } from "../components";
 
 const Test = () => {
-  const exercise = "She is the President";
-  let displayText = exercise;
-  // let correction = "";
+  const [allowPrevBtn, setAllowPrevBtn] = useState(false);
+  const [allowNextBtn, setAllowNextBtn] = useState(true);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [correction, setCorrection] = useState("");
+  const [wrongSpeech, setWrongSpeech] = useState("");
   const [makeCorrection, setMakeCorrection] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
+  const [questionNo, setQuestionNo] = useState(1);
+
+  const exercises = ["She is the President", "He likes to play ball"];
+  let exercise = exercises[questionNo - 1];
 
   // SPEECH RECOGNITION
   const SpeechRecognition =
@@ -16,10 +21,30 @@ const Test = () => {
 
   const recognition = new SpeechRecognition();
 
+  // INITIATE QUESTIONING
   useEffect(() => {
     ai_speak("Let's begin, pronounce this sentence");
   }, []);
 
+  // ACTIVATE AND DEACTIVATE ARROW BUTTONS
+  useEffect(() => {
+    if (questionNo === 1 || questionNo < 1) {
+      setAllowPrevBtn(false);
+      console.log("dont allow prev");
+    } else {
+      setAllowPrevBtn(true);
+      console.log("allow prev");
+    }
+    if (questionNo === exercises.length || questionNo > exercises.length) {
+      setAllowNextBtn(false);
+      console.log("dont allow next");
+    } else {
+      console.log("allow next");
+      setAllowNextBtn(true);
+    }
+  }, [questionNo]);
+
+  // SPEAKING STATE
   useEffect(() => {
     if (isSpeaking) {
       recognition.start();
@@ -40,7 +65,7 @@ const Test = () => {
     setIsSpeaking(false);
     let current = e.resultIndex;
     let transcript = e.results[current][0].transcript;
-    console.log(transcript);
+    // console.log(transcript);
 
     check_response(transcript, exercise);
   };
@@ -51,32 +76,37 @@ const Test = () => {
     console.log("vr deactivated");
   };
 
+  // CHECK THE RESPONSE GIVEN BY STUDENT
   function check_response(response, exercise) {
     let properResponse = response.substring(0, response.length - 1);
     let optimizedResponse = properResponse.toLowerCase();
     let optimizedExercise = exercise.toLowerCase();
     let answer = optimizedResponse.split(" ");
     let sentence = optimizedExercise.split(" ");
-    console.log(properResponse);
     console.log(answer);
     console.log(sentence);
 
+    // IF THE WORDS SPOKEN ARE THE SAME AMMOUNT AS THE EXERCISE
     if (answer.length === sentence.length) {
+      let wrongWordIndex = [];
       let wrongWord = [];
       for (let i = 0; i < answer.length; i++) {
         const ans = answer[i];
         if (ans !== sentence[i]) {
-          wrongWord.push(i);
+          wrongWordIndex.push(i);
+          wrongWord.push(ans);
         }
       }
-      if (wrongWord.length > 0) {
-        // correction = sentence[wrongWord[0]];
-        // ai_speak(`Try pronouncing this word as ${sentence[wrongWord[0]]}`);
-        correctUser(sentence[wrongWord[0]]);
+      if (wrongWordIndex.length > 0) {
+        // IF THERE IS A WRONG WORD SPOKEN BY STUDENT
+        correctUser(sentence[wrongWordIndex[0]], wrongWord[0]);
       } else {
         ai_speak("That's correct, well done", false);
+        // nextQuestion();
+        setShowAnswer(true);
       }
     } else {
+      // IF THE WORDS SPOKEN ARE LESS THAN OR GREATER THAN THE AMOUNT OF WORDS IN THE EXERCISE
       ai_speak("Make sure you start speaking after the mic is active");
     }
   }
@@ -92,6 +122,7 @@ const Test = () => {
     speech.rate = 1;
     speech.pitch = 1;
     window.speechSynthesis.speak(speech);
+    setIsSpeaking(false);
     if (respond) {
       speech.onend = function (e) {
         setIsSpeaking(true);
@@ -100,30 +131,62 @@ const Test = () => {
     console.log(speech.text);
   }
 
-  function correctUser(wrongWord) {
-    setCorrection(wrongWord);
+  function correctUser(wrongWordIndex, wrongWord) {
+    setCorrection(wrongWordIndex);
+    setWrongSpeech(wrongWord);
     setMakeCorrection(true);
-    ai_speak(`Try pronouncing the word as ${wrongWord}`);
+    ai_speak(`Try pronouncing the word as ${wrongWordIndex}`);
   }
 
-  // function exit() {
-  //   setMakeCorrection(false);
-  //   setIsSpeaking(false);
-  //   ai_speak.stop = true;
-  // }
+  let nextQuestion = () => {
+    exit();
+    setQuestionNo((prevCount) => prevCount + 1);
+    exercise = exercises[questionNo - 1];
+    ai_speak("Now try the next one");
+  };
+  let prevQuestion = () => {
+    exit();
+    setQuestionNo((prevCount) => prevCount - 1);
+    exercise = exercises[questionNo - 1];
+    ai_speak("Try this one again");
+  };
+
+  let reload = () => {
+    // setReloadInactive(true);
+    // window.speechSynthesis.cancel();
+    // recognition.stop();
+    exit();
+    ai_speak("Try pronouncing this sentence");
+  };
+
+  let exit = () => {
+    setIsSpeaking(false);
+    recognition.stop();
+    window.speechSynthesis.cancel();
+    setShowAnswer(false);
+  };
 
   return (
     <>
       {/* The num variable is to get the ammount of excercises */}
       {/* The active_id variable is to get the index of the active/present excercise */}
-      <Header />
+      <Header exit={exit} reload={reload} />
       <Exercise
-        text={displayText}
+        text={exercise}
         recording={isSpeaking}
         showCorrection={makeCorrection}
         correction={correction}
+        wrong_word={wrongSpeech}
+        showAnswer={showAnswer}
       />
-      <ArrowBtns />
+
+      {/* "reloadInactive" CHECKS IF IS SPEEAKING IS TRUE AND MAKES THE RELOAD BUTTON INACTIVE */}
+      <ArrowBtns
+        prev={prevQuestion}
+        next={nextQuestion}
+        allowPrev={allowPrevBtn}
+        allowNext={allowNextBtn}
+      />
     </>
   );
 };

@@ -1,21 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { BsQuestionLg } from "react-icons/bs";
+import { IoReloadOutline } from "react-icons/io5";
 
-const Header = () => {
+const Header = ({ exit, reload }) => {
   return (
     <div className="py-5 fixed bg-white shadow-lg w-full rounded-b-2xl">
       <div className="container flex justify-between items-center">
-        <button>
-          <Link to="/">
-            <img src={logo} alt="logo" className="w-20 md:w-24" />
-          </Link>
-        </button>
+        <Link to="/" onClick={exit}>
+          <img src={logo} alt="logo" className="w-20 md:w-24" />
+        </Link>
         <div></div>
-        <Link to="/test">
-          <div className="p-4 md:p-5 bg-blue-800 rounded-full">
-            <BsQuestionLg className="text-white" />
+        <Link to="/test" onClick={reload}>
+          <div className="p-3 md:p-4 bg-blue-800 rounded-full">
+            <IoReloadOutline className="text-white font-black text-3xl" />
           </div>
         </Link>
       </div>
