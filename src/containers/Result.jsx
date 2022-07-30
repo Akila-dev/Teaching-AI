@@ -28,7 +28,7 @@ const Result = () => {
             </div>
           </div>
         </div>
-        <div className="py-7 flex w-full justify-center items-center">
+        <div className="py-12 flex w-full justify-center items-center">
           <Link
             to="/test"
             className="text-center rounded-lg shadow-lg tracking-widest bg-blue-800 text-white text-2xl uppercase p-4 w-full md:1/2 lg:w-1/3 pulse-blue"
