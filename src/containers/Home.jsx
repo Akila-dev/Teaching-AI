@@ -5,7 +5,7 @@ import { Navbar } from "../components";
 const Home = () => {
   return (
     <div id="home" className="h-screen w-full">
-      <Navbar />
+      <Navbar position={"fixed"} />
       <div className="flex w-full h-full justify-center items-center">
         {/* <button className="rounded-lg shadow-lg tracking-widest bg-blue-900 text-white text-2xl uppercase"> */}
         <Link
