@@ -42,16 +42,16 @@ const Test = () => {
   useEffect(() => {
     if (questionNo === 1 || questionNo < 1) {
       setAllowPrevBtn(false);
-      console.log("dont allow prev");
+      // console.log("dont allow prev");
     } else {
       setAllowPrevBtn(true);
-      console.log("allow prev");
+      // console.log("allow prev");
     }
     if (questionNo === exercises.length || questionNo > exercises.length) {
       setAllowNextBtn(false);
-      console.log("dont allow next");
+      // console.log("dont allow next");
     } else {
-      console.log("allow next");
+      // console.log("allow next");
       setAllowNextBtn(true);
     }
   }, [questionNo]);
@@ -70,7 +70,7 @@ const Test = () => {
   recognition.onstart = function () {
     // recognition.continuous = true;
     // setIsSpeaking(true);
-    console.log("vr active");
+    // console.log("vr active");
   };
   // GET RESULT
   recognition.onresult = function (e) {
@@ -85,7 +85,7 @@ const Test = () => {
   // STOP FUNCTION
   recognition.onend = function () {
     setIsSpeaking(false);
-    console.log("vr deactivated");
+    // console.log("vr deactivated");
   };
 
   // CHECK THE RESPONSE GIVEN BY STUDENT
