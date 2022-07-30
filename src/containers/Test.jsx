@@ -91,14 +91,14 @@ const Test = () => {
   // CHECK THE RESPONSE GIVEN BY STUDENT
   function check_response(response, exercise) {
     setTries((prevTries) => prevTries + 1);
-    // let properResponse = response.substring(0, response.length - 1);
-    let properResponse = response;
+    let properResponse = response.replace(".", "");
+    // let properResponse = response;
     let optimizedResponse = properResponse.toLowerCase();
     let optimizedExercise = exercise.toLowerCase();
     let answer = optimizedResponse.split(" ");
     let sentence = optimizedExercise.split(" ");
-    console.log(answer);
-    console.log(sentence);
+    // console.log(answer);
+    // console.log(sentence);
 
     // IF THE WORDS SPOKEN ARE THE SAME AMMOUNT AS THE EXERCISE
     if (answer.length === sentence.length) {
