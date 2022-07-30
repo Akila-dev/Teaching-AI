@@ -11,6 +11,7 @@ const Test = () => {
   const [makeCorrection, setMakeCorrection] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
   const [questionNo, setQuestionNo] = useState(1);
+  const [tries, setTries] = useState(0);
 
   const exercises = ["She is the President", "He likes to play ball"];
   let exercise = exercises[questionNo - 1];
@@ -78,7 +79,9 @@ const Test = () => {
 
   // CHECK THE RESPONSE GIVEN BY STUDENT
   function check_response(response, exercise) {
-    let properResponse = response.substring(0, response.length - 1);
+    setTries((prevTries) => prevTries + 1);
+    // let properResponse = response.substring(0, response.length - 1);
+    let properResponse = response;
     let optimizedResponse = properResponse.toLowerCase();
     let optimizedExercise = exercise.toLowerCase();
     let answer = optimizedResponse.split(" ");
@@ -186,6 +189,8 @@ const Test = () => {
         next={nextQuestion}
         allowPrev={allowPrevBtn}
         allowNext={allowNextBtn}
+        noOfQuestions={exercises.length}
+        noOfTries={tries}
       />
     </>
   );
