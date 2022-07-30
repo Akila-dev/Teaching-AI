@@ -13,7 +13,18 @@ const Test = () => {
   const [questionNo, setQuestionNo] = useState(1);
   const [tries, setTries] = useState(0);
 
-  const exercises = ["She is the President", "He likes to play ball"];
+  const exercises = [
+    "She is the President",
+    "He likes to play ball",
+    "Get me the phone",
+    "Sing me to sleep",
+    "I like to dance",
+    "Bring me that bag",
+    "Let's go home now",
+    "Do you like it",
+    "Let's finish up",
+    "I went to school yesterday",
+  ];
   let exercise = exercises[questionNo - 1];
 
   // SPEECH RECOGNITION
