@@ -20,6 +20,9 @@ const PieChart = () => {
       options={{
         maintainAspectRatio: false,
         plugins: {
+          tooltip: {
+            enabled: false,
+          },
           legend: {
             display: false,
           },

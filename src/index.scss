@@ -57,26 +57,6 @@ body {
     box-shadow: 0 0 0 0 rgba(30, 64, 145, 0);
   }
 }
-.pulse-blue-sm {
-  text-shadow: 0 0 0 rgba(30, 64, 145, 1);
-  animation: pulse-blue-sm 2s infinite ease;
-}
-@keyframes pulse-blue-sm {
-  0% {
-    transform: scale(1);
-    text-shadow: 0 0 0 rgba(30, 64, 145, 0.7);
-  }
-
-  90% {
-    transform: scale(1);
-    text-shadow: 0 0 10px rgba(30, 64, 145, 0);
-  }
-
-  100% {
-    transform: scale(1);
-    text-shadow: 0 0 0 rgba(30, 64, 145, 0);
-  }
-}
 .shake {
   animation: shake 0.8s infinite;
 }

@@ -27,6 +27,9 @@ const LineChart = () => {
             indexAxis: "y",
             responsive: true,
             plugins: {
+              tooltip: {
+                enabled: false,
+              },
               legend: {
                 display: false,
               },
@@ -59,6 +62,9 @@ const LineChart = () => {
             indexAxis: "y",
             responsive: true,
             plugins: {
+              tooltip: {
+                enabled: false,
+              },
               legend: {
                 display: false,
               },
@@ -92,6 +98,9 @@ const LineChart = () => {
             indexAxis: "y",
             responsive: true,
             plugins: {
+              tooltip: {
+                enabled: false,
+              },
               legend: {
                 display: false,
               },
@@ -125,6 +134,9 @@ const LineChart = () => {
             indexAxis: "y",
             responsive: true,
             plugins: {
+              tooltip: {
+                enabled: false,
+              },
               legend: {
                 display: false,
               },

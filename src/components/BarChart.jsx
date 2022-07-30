@@ -33,6 +33,11 @@ const BarChart = () => {
           width={600}
           options={{
             maintainAspectRatio: false,
+            plugins: {
+              tooltip: {
+                enabled: false,
+              },
+            },
           }}
         />
       </div>
@@ -63,6 +68,11 @@ const BarChart = () => {
           width={600}
           options={{
             maintainAspectRatio: false,
+            plugins: {
+              tooltip: {
+                enabled: false,
+              },
+            },
           }}
         />
       </div>
