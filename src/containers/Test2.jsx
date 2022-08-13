@@ -19,42 +19,40 @@ const Test2 = () => {
   };
 
   const playIntro = () => {
-    setShowIntro(true);
     setTimeout(() => {
       playAudio(intro1);
       setShowIntro1(true);
       setShowIntro2(false);
       setShowIntro3(false);
-    }, 500);
+    }, 1500);
 
     setTimeout(() => {
       setShowIntro1(false);
       setShowIntro2(true);
       setShowIntro3(false);
-    }, 3500);
+    }, 4500);
 
     setTimeout(() => {
       playAudio(intro2);
-    }, 4000);
+    }, 5000);
 
     setTimeout(() => {
       setShowIntro1(false);
       setShowIntro2(false);
       setShowIntro3(true);
-    }, 30000);
+    }, 31000);
     setTimeout(() => {
       playAudio(intro3);
-    }, 30500);
+    }, 31500);
     setTimeout(() => {
       setShowIntro(false);
       setShowIntro1(false);
       setShowIntro2(false);
       setShowIntro3(false);
-    }, 45000);
+    }, 46000);
   };
 
   useEffect(() => {
-    setShowIntro(true);
     playIntro();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
