@@ -26,6 +26,8 @@ const AlphabetTest = () => {
   recognition.onstart = function () {
     // recognition.continuous = true;
     console.log("vr active");
+    setletterIndex((prev) => prev);
+    setCompleted((prev) => prev);
   };
 
   const checkPhrase = (transcript, phrase) => {
