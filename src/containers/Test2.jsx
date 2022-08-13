@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AlphabetTest, Intro1, Intro2, Intro3 } from "../test2";
 import { intro1, intro2, intro3 } from "../assets/intros";
+import { Header } from "../components";
 
 const Test2 = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -68,8 +69,18 @@ const Test2 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  let exit = () => {
+    window.SpeechRecognition.stop();
+    window.speechSynthesis.cancel();
+  };
+
+  let reload = () => {
+    exit();
+  };
+
   return (
     <div>
+      <Header exit={exit} reload={reload} to="/" />
       {showIntro ? (
         <div>
           {showIntro1 && <Intro1 />} {showIntro2 && <Intro2 />}

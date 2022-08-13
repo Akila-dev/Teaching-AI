@@ -28,7 +28,6 @@ import {
   soundZ,
 } from "../assets/letters";
 import Test2Completed from "./Test2Completed";
-import { Navbar } from "../components";
 import { BsFillMicFill } from "react-icons/bs";
 
 const AlphabetTest = () => {
@@ -149,7 +148,6 @@ const AlphabetTest = () => {
 
   return (
     <div className="relative">
-      <Navbar position="fixed" />
       {completed ? (
         <Test2Completed restart={restart} />
       ) : (

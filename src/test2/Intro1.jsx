@@ -1,10 +1,8 @@
 import React from "react";
-import { Navbar } from "../components";
 
 const Intro1 = () => {
   return (
     <>
-      <Navbar position="fixed" />
       <div className="flex flex-col-reverse lg:flex-row w-full h-screen intro-1 py-10 xl:px-10">
         <div className="w-full flex-1 h-full bg-white flex flex-col justify-center items-center lg:items-start lg:pb-20 py-5 ">
           {/* <div className="lg:pl-20 pb-5">

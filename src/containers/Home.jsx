@@ -19,7 +19,6 @@ const Home = () => {
           </Link>
           <Link
             to="/test2"
-            target="_blank"
             className="text-center rounded-lg shadow-lg tracking-widest bg-blue-800 text-white text-2xl uppercase py-3 w-full md:1/2 lg:w-1/3 pulse-blue"
           >
             Take Test 2

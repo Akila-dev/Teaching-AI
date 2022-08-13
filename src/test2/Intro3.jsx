@@ -1,11 +1,9 @@
 import React from "react";
 import teacher from "../assets/teacher.jpg";
-import { Navbar } from "../components";
 
 const Intro3 = () => {
   return (
     <>
-      <Navbar position="fixed" />
       <div className="flex flex-col md:flex-row w-full h-screen px-5 md:px-10 lg:px-20 xl:px-40 pt-[120px] md:pt-0">
         <div className="w-full h-full flex justify-start items-center">
           <div className="rounded-full shadow-lg p-2 w-[100%] lg:w-[90%] xl:w-[80%]">
