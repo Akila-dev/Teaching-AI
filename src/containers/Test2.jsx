@@ -18,84 +18,46 @@ const Test2 = () => {
     console.log("audio playing");
   };
 
-  // const playIntro = () => {
-  //   setTimeout(() => {
-  //     playAudio(intro1);
-  //     setShowIntro(true);
-  //     setShowIntro1(true);
-  //     setShowIntro2(false);
-  //     setShowIntro3(false);
-  //   }, 500);
+  const playIntro = () => {
+    setTimeout(() => {
+      playAudio(intro1);
+      setShowIntro(true);
+      setShowIntro1(true);
+      setShowIntro2(false);
+      setShowIntro3(false);
+    }, 500);
 
-  //   setTimeout(() => {
-  //     setShowIntro(true);
-  //     setShowIntro1(false);
-  //     setShowIntro2(true);
-  //     setShowIntro3(false);
-  //   }, 3500);
+    setTimeout(() => {
+      setShowIntro(true);
+      setShowIntro1(false);
+      setShowIntro2(true);
+      setShowIntro3(false);
+    }, 3500);
 
-  //   setTimeout(() => {
-  //     playAudio(intro2);
-  //   }, 4000);
+    setTimeout(() => {
+      playAudio(intro2);
+    }, 4000);
 
-  //   setTimeout(() => {
-  //     setShowIntro(true);
-  //     setShowIntro1(false);
-  //     setShowIntro2(false);
-  //     setShowIntro3(true);
-  //   }, 30000);
-  //   setTimeout(() => {
-  //     playAudio(intro3);
-  //   }, 30500);
-  //   setTimeout(() => {
-  //     setShowIntro(false);
-  //     setShowIntro1(false);
-  //     setShowIntro2(false);
-  //     setShowIntro3(false);
-  //   }, 45000);
-  // };
+    setTimeout(() => {
+      setShowIntro(true);
+      setShowIntro1(false);
+      setShowIntro2(false);
+      setShowIntro3(true);
+    }, 30000);
+    setTimeout(() => {
+      playAudio(intro3);
+    }, 30500);
+    setTimeout(() => {
+      setShowIntro(false);
+      setShowIntro1(false);
+      setShowIntro2(false);
+      setShowIntro3(false);
+    }, 45000);
+  };
 
   useEffect(() => {
-    const playIntro = () => {
-      setTimeout(() => {
-        setTimeout(() => {
-          playAudio(intro1);
-        }, 500);
-        setShowIntro(true);
-        setShowIntro1(true);
-        setShowIntro2(false);
-        setShowIntro3(false);
-      }, 0);
-
-      setTimeout(() => {
-        setShowIntro(true);
-        setShowIntro1(false);
-        setShowIntro2(true);
-        setShowIntro3(false);
-      }, 3500);
-
-      setTimeout(() => {
-        playAudio(intro2);
-      }, 4000);
-
-      setTimeout(() => {
-        setShowIntro(true);
-        setShowIntro1(false);
-        setShowIntro2(false);
-        setShowIntro3(true);
-      }, 30000);
-      setTimeout(() => {
-        playAudio(intro3);
-      }, 30500);
-      setTimeout(() => {
-        setShowIntro(false);
-        setShowIntro1(false);
-        setShowIntro2(false);
-        setShowIntro3(false);
-      }, 45000);
-    };
-
     playIntro();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
