@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../assets/logo.png";
 import teacher from "../assets/teacher.jpg";
 import { Navbar } from "../components";
 

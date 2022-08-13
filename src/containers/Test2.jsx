@@ -93,7 +93,7 @@ const Test2 = () => {
       }, 45000);
     };
 
-    // playIntro();
+    playIntro();
   }, []);
 
   return (
