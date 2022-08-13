@@ -3,7 +3,7 @@ import { AlphabetTest, Intro1, Intro2, Intro3 } from "../test2";
 import { intro1, intro2, intro3 } from "../assets/intros";
 
 const Test2 = () => {
-  const [showIntro, setShowIntro] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
   const [showIntro1, setShowIntro1] = useState(true);
   const [showIntro2, setShowIntro2] = useState(false);
   const [showIntro3, setShowIntro3] = useState(false);
@@ -19,6 +19,7 @@ const Test2 = () => {
   };
 
   const playIntro = () => {
+    setShowIntro(true);
     setTimeout(() => {
       playAudio(intro1);
       setShowIntro1(true);
