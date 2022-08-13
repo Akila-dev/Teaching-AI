@@ -58,12 +58,14 @@ const Test2 = () => {
   useEffect(() => {
     const playIntro = () => {
       setTimeout(() => {
-        playAudio(intro1);
+        setTimeout(() => {
+          playAudio(intro1);
+        }, 500);
         setShowIntro(true);
         setShowIntro1(true);
         setShowIntro2(false);
         setShowIntro3(false);
-      }, 500);
+      }, 0);
 
       setTimeout(() => {
         setShowIntro(true);
