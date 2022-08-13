@@ -57,7 +57,7 @@ const Test2 = () => {
 
   useEffect(() => {
     playIntro();
-  }, []);
+  });
 
   return (
     <div>

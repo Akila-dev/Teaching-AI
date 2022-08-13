@@ -99,7 +99,7 @@ const AlphabetTest = () => {
     setTimeout(() => {
       playAudio(alphabets[letterIndex].sound);
     }, 700);
-  }, [letterIndex]);
+  });
 
   useEffect(() => {
     if (isSpeaking) {
@@ -107,7 +107,7 @@ const AlphabetTest = () => {
     } else {
       recognition.stop();
     }
-  }, [isSpeaking]);
+  });
 
   return (
     <div>
