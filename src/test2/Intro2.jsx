@@ -5,89 +5,115 @@ const Intro2 = () => {
   const a2e = [
     {
       letter: "Aa",
+      key: 1,
     },
     {
       letter: "Bb",
+      key: 2,
     },
     {
       letter: "Cc",
+      key: 3,
     },
     {
       letter: "Dd",
+      key: 4,
     },
     {
       letter: "Ee",
+      key: 5,
     },
   ];
   const f2k = [
     {
       letter: "Ff",
+      key: 1,
     },
     {
       letter: "Gg",
+      key: 2,
     },
     {
       letter: "Hh",
+      key: 3,
     },
     {
       letter: "Ii",
+      key: 4,
     },
     {
       letter: "Jj",
+      key: 5,
     },
     {
       letter: "Kk",
+      key: 6,
     },
   ];
   const l2p = [
     {
       letter: "Ll",
+      key: 1,
     },
     {
       letter: "Mm",
+      key: 2,
     },
     {
       letter: "Nn",
+      key: 3,
     },
     {
       letter: "Oo",
+      key: 4,
     },
     {
       letter: "Pp",
+      key: 5,
     },
   ];
   const q2u = [
     {
       letter: "Qq",
+      key: 1,
     },
     {
       letter: "Rr",
+      key: 2,
     },
     {
       letter: "Ss",
+      key: 3,
     },
     {
       letter: "Tt",
+      key: 4,
     },
     {
       letter: "Uu",
+      key: 5,
     },
   ];
   const v2z = [
     {
       letter: "Vv",
+      key: 1,
     },
     {
       letter: "Ww",
+      key: 2,
     },
     {
       letter: "Xx",
+      key: 3,
     },
     {
       letter: "Yy",
+      key: 4,
     },
     {
       letter: "Zz",
+      key: 5,
     },
   ];
   return (
@@ -102,27 +128,27 @@ const Intro2 = () => {
           {/* <img src={logo} alt="logo" className="w-30 md:w-[140px]" /> */}
           <div className="flex gap-3 text-[1.7rem] md:text-4xl xl:gap-14 xl:text-6xl lg:gap-8 lg:text-5xl intro-1 tshadow">
             {a2e.map((letter) => (
-              <p>{letter.letter}</p>
+              <p key={letter.key}>{letter.letter}</p>
             ))}
           </div>
           <div className="flex gap-3 text-[1.7rem] md:text-4xl xl:gap-14 xl:text-6xl lg:gap-8 lg:text-5xl intro-1 tshadow">
             {f2k.map((letter) => (
-              <p>{letter.letter}</p>
+              <p key={letter.key}>{letter.letter}</p>
             ))}
           </div>
           <div className="flex gap-3 text-[1.7rem] md:text-4xl xl:gap-14 xl:text-6xl lg:gap-8 lg:text-5xl intro-1 tshadow">
             {l2p.map((letter) => (
-              <p>{letter.letter}</p>
+              <p key={letter.key}>{letter.letter}</p>
             ))}
           </div>
           <div className="flex gap-3 text-[1.7rem] md:text-4xl xl:gap-14 xl:text-6xl lg:gap-8 lg:text-5xl intro-1 tshadow">
             {q2u.map((letter) => (
-              <p>{letter.letter}</p>
+              <p key={letter.key}>{letter.letter}</p>
             ))}
           </div>
           <div className="flex gap-3 text-[1.7rem] md:text-4xl xl:gap-14 xl:text-6xl lg:gap-8 lg:text-5xl intro-1 tshadow">
             {v2z.map((letter) => (
-              <p>{letter.letter}</p>
+              <p key={letter.key}>{letter.letter}</p>
             ))}
           </div>
         </div>

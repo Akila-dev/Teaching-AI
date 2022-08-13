@@ -4,7 +4,7 @@ import { intro1, intro2, intro3 } from "../assets/intros";
 import { Header } from "../components";
 
 const Test2 = () => {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
   const [showIntro1, setShowIntro1] = useState(true);
   const [showIntro2, setShowIntro2] = useState(false);
   const [showIntro3, setShowIntro3] = useState(false);
@@ -63,15 +63,21 @@ const Test2 = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      playIntro1();
-    }, 500);
+    if (showIntro) {
+      setTimeout(() => {
+        playIntro1();
+      }, 500);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  const recognition = new SpeechRecognition();
+
   let exit = () => {
-    window.SpeechRecognition.stop();
-    window.speechSynthesis.cancel();
+    recognition.stop();
   };
 
   let reload = () => {

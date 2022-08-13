@@ -5,7 +5,7 @@ import { IoReloadOutline } from "react-icons/io5";
 
 const Header = ({ exit, reload, to = "/test" }) => {
   return (
-    <div className="py-5 fixed bg-white shadow-lg w-full rounded-b-2xl">
+    <div className="py-5 fixed bg-white shadow-lg w-full rounded-b-2xl z-1000">
       <div className="container flex justify-between items-center">
         <Link to="/" onClick={exit}>
           <img src={logo} alt="logo" className="w-20 md:w-24" />

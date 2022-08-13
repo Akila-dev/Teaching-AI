@@ -4,7 +4,7 @@ import teacher from "../assets/teacher.jpg";
 const Intro3 = () => {
   return (
     <>
-      <div className="flex flex-col md:flex-row w-full h-screen px-5 md:px-10 lg:px-20 xl:px-40 pt-[120px] md:pt-0">
+      <div className="flex flex-col md:flex-row w-full h-screen px-5 md:px-10 lg:px-20 xl:px-40 pt-[100px] md:pt-0">
         <div className="w-full h-full flex justify-start items-center">
           <div className="rounded-full shadow-lg p-2 w-[100%] lg:w-[90%] xl:w-[80%]">
             <img src={teacher} alt="teacher" className="w-full rounded-full" />

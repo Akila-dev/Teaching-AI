@@ -3,7 +3,7 @@ import React from "react";
 const Intro1 = () => {
   return (
     <>
-      <div className="flex flex-col-reverse lg:flex-row w-full h-screen intro-1 py-10 xl:px-10">
+      <div className="flex flex-col-reverse lg:flex-row w-full h-screen intro-1 py-10 xl:px-10 pt-[100px]">
         <div className="w-full flex-1 h-full bg-white flex flex-col justify-center items-center lg:items-start lg:pb-20 py-5 ">
           {/* <div className="lg:pl-20 pb-5">
           <img src={logo} alt="logo" className="w-30 md:w-[140px]" />
