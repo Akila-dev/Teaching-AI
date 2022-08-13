@@ -30,7 +30,7 @@ import {
 import Test2Completed from "./Test2Completed";
 import { BsFillMicFill } from "react-icons/bs";
 
-const AlphabetTest = () => {
+const AlphabetTest = ({ isExited }) => {
   const [letterIndex, setletterIndex] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);

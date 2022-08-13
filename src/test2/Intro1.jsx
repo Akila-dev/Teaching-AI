@@ -8,7 +8,7 @@ const Intro1 = () => {
           {/* <div className="lg:pl-20 pb-5">
           <img src={logo} alt="logo" className="w-30 md:w-[140px]" />
         </div> */}
-          <h1 className="tshadow px-4 lg:pl-20 md:px-0 font-bold text-center lg:text-left text-blue-900 text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-wide leading-[45px] md:leading-[60px] lg:leading-[80px] xl:leading-[90px] lg:pt-16">
+          <h1 className="uppercase tshadow px-4 lg:pl-20 md:px-0 font-bold text-center lg:text-left text-blue-900 text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-wide leading-[45px] md:leading-[60px] lg:leading-[80px] xl:leading-[90px] lg:pt-16">
             Sounds of the
             <br />
             Alphabet

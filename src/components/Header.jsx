@@ -8,10 +8,10 @@ const Header = ({ exit, reload, to = "/test" }) => {
     <div className="py-5 fixed bg-white shadow-lg w-full rounded-b-2xl z-1000">
       <div className="container flex justify-between items-center">
         <Link to="/" onClick={exit}>
-          <img src={logo} alt="logo" className="w-20 md:w-24" />
+          <img src={logo} alt="logo" className="w-20 md:w-24 cursor-pointer" />
         </Link>
         <div></div>
-        <Link to={to} onClick={reload}>
+        <Link to={to} onClick={reload} className="cursor-pointer">
           <div className="p-3 md:p-4 bg-blue-800 rounded-full">
             <IoReloadOutline className="text-white font-black text-3xl" />
           </div>

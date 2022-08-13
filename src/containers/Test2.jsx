@@ -8,6 +8,7 @@ const Test2 = () => {
   const [showIntro1, setShowIntro1] = useState(true);
   const [showIntro2, setShowIntro2] = useState(false);
   const [showIntro3, setShowIntro3] = useState(false);
+  const [isExited, setIsExited] = useState(false);
 
   const playAudio = (audio) => {
     const music = new Audio(audio);
@@ -78,6 +79,7 @@ const Test2 = () => {
 
   let exit = () => {
     recognition.stop();
+    setIsExited(true);
   };
 
   let reload = () => {
@@ -94,7 +96,7 @@ const Test2 = () => {
         </div>
       ) : (
         <div>
-          <AlphabetTest />
+          <AlphabetTest exited={isExited} />
         </div>
       )}
     </div>
