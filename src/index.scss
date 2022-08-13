@@ -8,6 +8,31 @@ body {
   line-height: 24px;
 }
 
+.alphabet-font {
+  font-size: 13em;
+  font-family: "Noto";
+  text-shadow: -3px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.tshadow {
+  text-shadow: -2px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.intro-1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.center-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.z-1000 {
+  z-index: 1000;
+}
+
 // .test-btn {
 //   transform: translateY(-50%);
 // }
@@ -80,43 +105,6 @@ body {
     transform: skewX(0deg);
   }
 }
-// @keyframes shake {
-//   0% {
-//     transform: skewX(-15deg);
-//   }
-//   5% {
-//     transform: skewX(15deg);
-//   }
-//   10% {
-//     transform: skewX(-15deg);
-//   }
-//   15% {
-//     transform: skewX(15deg);
-//   }
-//   20% {
-//     transform: skewX(0deg);
-//   }
-//   100% {
-//     transform: skewX(0deg);
-//   }
-// }
-// @keyframes shake {
-//   0% {
-//     transform: rotate(0deg);
-//   }
-//   25% {
-//     transform: rotate(5deg);
-//   }
-//   50% {
-//     transform: rotate(0eg);
-//   }
-//   75% {
-//     transform: rotate(-5deg);
-//   }
-//   100% {
-//     transform: rotate(0deg);
-//   }
-// }
 
 // RESPONSIVENESS
 @media screen and (max-width: 1024px) {
@@ -131,6 +119,9 @@ body {
     font-size: 30px;
     line-height: 40px;
   }
+  .alphabet-font {
+    font-size: 10em;
+  }
 }
 @media screen and (max-width: 750px) {
   .container {
@@ -143,6 +134,9 @@ body {
   .sm-h1 {
     font-size: 25px;
     line-height: 35px;
+  }
+  .alphabet-font {
+    font-size: 8em;
   }
 }
 
