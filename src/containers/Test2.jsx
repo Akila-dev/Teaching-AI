@@ -19,16 +19,15 @@ const Test2 = () => {
   };
 
   const playIntro = () => {
+    setShowIntro(true);
     setTimeout(() => {
       playAudio(intro1);
-      setShowIntro(true);
       setShowIntro1(true);
       setShowIntro2(false);
       setShowIntro3(false);
     }, 500);
 
     setTimeout(() => {
-      setShowIntro(true);
       setShowIntro1(false);
       setShowIntro2(true);
       setShowIntro3(false);
@@ -39,7 +38,6 @@ const Test2 = () => {
     }, 4000);
 
     setTimeout(() => {
-      setShowIntro(true);
       setShowIntro1(false);
       setShowIntro2(false);
       setShowIntro3(true);
