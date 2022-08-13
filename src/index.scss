@@ -122,6 +122,9 @@ body {
   .alphabet-font {
     font-size: 10em;
   }
+  .tshadow {
+    text-shadow: -1px 2px 3px rgba(0, 0, 0, 0.5);
+  }
 }
 @media screen and (max-width: 750px) {
   .container {
@@ -137,6 +140,9 @@ body {
   }
   .alphabet-font {
     font-size: 8em;
+  }
+  .tshadow {
+    text-shadow: -1px 1px 1px rgba(0, 0, 0, 0.5);
   }
 }
 
