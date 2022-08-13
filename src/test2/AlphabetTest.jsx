@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/logo.png";
+// import logo from "../assets/logo.png";
 import { soundA } from "../assets/letters";
 import Test2Completed from "./Test2Completed";
 import { Navbar } from "../components";
@@ -13,8 +13,8 @@ const AlphabetTest = () => {
     { letter: "Bb", sound: soundA, example: "bag", phrase: "B says" },
   ];
 
-  let wrongPronounciation = 0;
-  let takeNo = 0;
+  // let wrongPronounciation = 0;
+  // let takeNo = 0;
 
   // SPEECH RECOGNITION
   const SpeechRecognition =
