@@ -19,7 +19,6 @@ const Test2 = () => {
   };
 
   const playIntro = () => {
-    setShowIntro(true);
     setTimeout(() => {
       playAudio(intro1);
       setShowIntro1(true);
@@ -54,6 +53,7 @@ const Test2 = () => {
   };
 
   useEffect(() => {
+    setShowIntro(true);
     playIntro();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
