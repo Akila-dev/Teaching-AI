@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import teacher from "../assets/teacher.jpg";
+import { retakeProp, proceedProp } from "../assets/intros";
 
-const Test2Completed = (restart) => {
+const Test2Completed = ({ restart, status }) => {
+  useEffect(() => {
+    if (status > 2) {
+      const music = new Audio(retakeProp);
+      music.playbackRate = 1;
+      music.play();
+    } else {
+      const music = new Audio(proceedProp);
+      music.playbackRate = 1;
+      music.play();
+    }
+  }, [status]);
+
   return (
     <>
       <div className="flex flex-col md:flex-row w-full h-screen px-5 md:px-10 lg:px-20 xl:px-40 pt-[120px] md:pt-0">

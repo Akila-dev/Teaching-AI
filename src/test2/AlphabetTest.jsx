@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import phonemify from "phonemify";
 import {
   soundA,
   soundB,
@@ -34,33 +35,38 @@ const AlphabetTest = ({ isExited }) => {
   const [letterIndex, setletterIndex] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  // const [yourWords, setYourWords] = useState("");
+  // const [yourPhonemes, setYourPhonemes] = useState("");
+  // const [expectedPhonemes, setExpectedPhonemes] = useState("");
+  const [totalWrong, setTotalWrong] = useState(0);
+  const [wrong, setWrong] = useState(0);
   const alphabets = [
-    { letter: "Aa", sound: soundA, example: "ax", phrase: "a says" },
-    { letter: "Bb", sound: soundB, example: "bag", phrase: "b says" },
-    { letter: "Cc", sound: soundC, example: "cab", phrase: "c says" },
-    { letter: "Dd", sound: soundD, example: "dig", phrase: "d says" },
-    { letter: "Ee", sound: soundE, example: "egg", phrase: "e says" },
-    { letter: "Ff", sound: soundF, example: "fish", phrase: "f says" },
-    { letter: "Gg", sound: soundG, example: "go", phrase: "g says" },
-    { letter: "Hh", sound: soundH, example: "hi", phrase: "h says" },
-    { letter: "Ii", sound: soundI, example: "it", phrase: "i says" },
-    { letter: "Jj", sound: soundJ, example: "jot", phrase: "j says" },
-    { letter: "Kk", sound: soundK, example: "kite", phrase: "k says" },
-    { letter: "Ll", sound: soundL, example: "lip", phrase: "l says" },
-    { letter: "Mm", sound: soundM, example: "map", phrase: "m says" },
-    { letter: "Nn", sound: soundN, example: "nap", phrase: "n says" },
-    { letter: "Oo", sound: soundO, example: "ox", phrase: "o says" },
-    { letter: "Pp", sound: soundP, example: "pig", phrase: "p says" },
-    { letter: "Qq", sound: soundQ, example: "queen", phrase: "q says" },
-    { letter: "Rr", sound: soundR, example: "rat", phrase: "r says" },
-    { letter: "Ss", sound: soundS, example: "set", phrase: "s says" },
-    { letter: "Tt", sound: soundT, example: "top", phrase: "t says" },
-    { letter: "Uu", sound: soundU, example: "up", phrase: "u says" },
-    { letter: "Vv", sound: soundV, example: "vast", phrase: "v says" },
-    { letter: "Ww", sound: soundW, example: "we", phrase: "w says" },
-    { letter: "Xx", sound: soundX, example: "x-ray", phrase: "x says" },
-    { letter: "Yy", sound: soundY, example: "yell", phrase: "y says" },
-    { letter: "Zz", sound: soundZ, example: "zip", phrase: "z says" },
+    { letter: "Aa", sound: soundA, example: "ax", phrase: ["a says", "AE"] },
+    { letter: "Bb", sound: soundB, example: "bag", phrase: ["b says", "B"] },
+    { letter: "Cc", sound: soundC, example: "cab", phrase: ["c says", "K"] },
+    { letter: "Dd", sound: soundD, example: "dig", phrase: ["d says", "D"] },
+    { letter: "Ee", sound: soundE, example: "egg", phrase: ["e says", "EH"] },
+    { letter: "Ff", sound: soundF, example: "fish", phrase: ["f says", "F"] },
+    { letter: "Gg", sound: soundG, example: "go", phrase: ["g says", "G"] },
+    { letter: "Hh", sound: soundH, example: "hi", phrase: ["h says", "HH"] },
+    { letter: "Ii", sound: soundI, example: "it", phrase: ["i says", "IH"] },
+    { letter: "Jj", sound: soundJ, example: "jot", phrase: ["j says", "JH"] },
+    { letter: "Kk", sound: soundK, example: "kite", phrase: ["k says", "K"] },
+    { letter: "Ll", sound: soundL, example: "lip", phrase: ["l says", "L"] },
+    { letter: "Mm", sound: soundM, example: "map", phrase: ["m says", "M"] },
+    { letter: "Nn", sound: soundN, example: "nap", phrase: ["n says", "N"] },
+    { letter: "Oo", sound: soundO, example: "ox", phrase: ["o says", "AA"] },
+    { letter: "Pp", sound: soundP, example: "pig", phrase: ["p says", "P"] },
+    { letter: "Qq", sound: soundQ, example: "queen", phrase: ["q says", "K"] },
+    { letter: "Rr", sound: soundR, example: "rat", phrase: ["r says", "R"] },
+    { letter: "Ss", sound: soundS, example: "set", phrase: ["s says", "S"] },
+    { letter: "Tt", sound: soundT, example: "top", phrase: ["t says", "T"] },
+    { letter: "Uu", sound: soundU, example: "up", phrase: ["u says", "AH"] },
+    { letter: "Vv", sound: soundV, example: "vast", phrase: ["v says", "V"] },
+    { letter: "Ww", sound: soundW, example: "we", phrase: ["w says", "W"] },
+    { letter: "Xx", sound: soundX, example: "x-ray", phrase: ["x says", "KS"] },
+    { letter: "Yy", sound: soundY, example: "yell", phrase: ["y says", "Y"] },
+    { letter: "Zz", sound: soundZ, example: "zip", phrase: ["z says", "Z"] },
   ];
 
   const bg_color = [
@@ -128,8 +134,8 @@ const AlphabetTest = ({ isExited }) => {
   const recognition = new SpeechRecognition();
 
   recognition.onstart = function (e) {
-    recognition.continuous = true;
-    recognition.interimResults = true;
+    recognition.continuous = false;
+    recognition.interimResults = false;
   };
 
   useEffect(() => {
@@ -142,51 +148,84 @@ const AlphabetTest = ({ isExited }) => {
   useEffect(() => {
     if (isSpeaking) {
       recognition.start();
-      console.log("continue");
     } else {
       recognition.stop();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSpeaking]);
 
-  recognition.onstart = function () {
-    // recognition.continuous = true;
-    console.log("vr active");
-  };
-
-  // function checkPhrase(transcript, phrase) {
-  //   let response = transcript.toLowerCase();
-  //   let spoken_phrase = response.replace(".", "");
-  //   let expected_phrase = phrase.toLowerCase();
-
-  //   console.log(spoken_phrase);
-  //   console.log(expected_phrase);
-
-  //   if (expected_phrase === spoken_phrase) {
-  //     console.log("You are corrects");
-  //   }
-  // }
-
   // @after listening to users speech
   recognition.onresult = function (e) {
     setIsSpeaking(false);
-    // let current = e.resultIndex;
-    // let transcript = e.results[current][0].transcript;
-    // checkPhrase(transcript, alphabets[letterIndex].phrase);
+    let current = e.resultIndex;
+    let transcript = e.results[current][0].transcript;
+    let noDotTranscript = transcript.replace(".", "");
 
-    if (letterIndex + 1 < alphabets.length) {
-      setTimeout(() => {
-        setletterIndex((pres) => pres + 1);
-      }, 500);
+    let phrase1 = phonemify(alphabets[letterIndex].phrase[0]);
+    let fullPhrase = phrase1 + " " + alphabets[letterIndex].phrase[1];
+    let phonemifyTranscript = phonemify(noDotTranscript);
+
+    // setYourPhonemes(phonemifyTranscript);
+    // setExpectedPhonemes(fullPhrase);
+    // setYourWords(transcript);
+
+    // @ REMOVE SPACES FROM THE PHRASE AND TRANSCRIPT
+    let noSpacePhrase = fullPhrase.replace(" ", "");
+    let noSpaceTranscript = phonemifyTranscript.replace(" ", "");
+
+    let correct = 0;
+    let score = 0;
+    // let overall = noSpaceTranscript.length;
+
+    // @ CHECK IF ALL LETTERS IN THE EXPECTED PHRASE ARE IN THE WORDS SPOKEN BY USER
+    for (let i = 0; i < noSpaceTranscript.length; i++) {
+      const word = noSpaceTranscript[i];
+      if (new RegExp(word).test(noSpacePhrase)) {
+        score += 1;
+      }
+    }
+
+    //@ IF 80% OF THE WORDS IN THE EXPECTED PHRASE ARE IN THE SPOKEN WORDS, THEN SET THE CORRECT VALUE TO 1
+    if (score + 1 >= noSpaceTranscript.length) {
+      console.log("correct");
+      console.log(score);
+      correct += 1;
+    }
+    console.log(correct);
+
+    if (correct > 0) {
+      setWrong(0);
+      if (letterIndex + 1 < alphabets.length) {
+        setTimeout(() => {
+          setletterIndex((pres) => pres + 1);
+        }, 500);
+      } else {
+        setletterIndex(alphabets.length);
+        setCompleted(true);
+      }
     } else {
-      setletterIndex(alphabets.length);
-      setCompleted(true);
+      console.log("less than 75% correct");
+      setWrong((prev) => prev + 1);
+      if (wrong > 3) {
+        setTotalWrong((prev) => prev + 1);
+        setWrong(0);
+        console.log("exceeded");
+        if (letterIndex + 1 < alphabets.length) {
+          setTimeout(() => {
+            setletterIndex((pres) => pres + 1);
+          }, 500);
+        } else {
+          setletterIndex(alphabets.length);
+          setCompleted(true);
+        }
+      } else {
+        playAudio(alphabets[letterIndex].sound);
+      }
     }
   };
 
   recognition.onend = function () {
     setIsSpeaking(false);
-    console.log("vr deactivated");
   };
 
   const playAudio = (audio) => {
@@ -195,10 +234,8 @@ const AlphabetTest = ({ isExited }) => {
     music.playbackRate = 1;
     music.play();
     music.onended = function (e) {
-      console.log("audio ended");
       setIsSpeaking(true);
     };
-    console.log("audio playing");
   };
 
   useEffect(() => {
@@ -219,7 +256,7 @@ const AlphabetTest = ({ isExited }) => {
   return (
     <div className="relative">
       {completed ? (
-        <Test2Completed restart={restart} />
+        <Test2Completed restart={restart} status={totalWrong} />
       ) : (
         <>
           <div className="center-text z-1000">
@@ -252,6 +289,16 @@ const AlphabetTest = ({ isExited }) => {
               </h1>
             </div>
           </div>
+
+          {/* TEST PURPOSE ONLY */}
+          {/* <div className="w-full py-20 fixed bottom-0 left-0 flex flex-col justify-center items-center text-3xl bg-white">
+            <h1 className={`text-black ${color[letterIndex]} pb-5`}>
+              Here is what the computer thinks you are saying
+            </h1>
+            <p className="text-bold">{yourWords}</p>
+            <p className="text-bold py-3">{yourPhonemes}</p>
+            <p className="text-bold">{expectedPhonemes}</p>
+          </div> */}
         </>
       )}
     </div>
