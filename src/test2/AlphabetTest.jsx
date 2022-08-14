@@ -118,6 +118,7 @@ const AlphabetTest = ({ isExited }) => {
     "text-blue-500",
     "text-indigo-800",
     "text-fuchsia-800",
+    "text-purple-800",
     "text-blue-700",
     "text-indigo-700",
     "text-fuchsia-700",
