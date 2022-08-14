@@ -32,12 +32,17 @@ import Test2Completed from "./Test2Completed";
 import { BsFillMicFill } from "react-icons/bs";
 
 const AlphabetTest = ({ isExited }) => {
+  const [isTesting, setIsTesting] = useState(true);
+  useEffect(() => {
+    setIsTesting(false);
+  }, []);
+
   const [letterIndex, setletterIndex] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  // const [yourWords, setYourWords] = useState("");
-  // const [yourPhonemes, setYourPhonemes] = useState("");
-  // const [expectedPhonemes, setExpectedPhonemes] = useState("");
+  const [yourWords, setYourWords] = useState("");
+  const [yourPhonemes, setYourPhonemes] = useState("");
+  const [expectedPhonemes, setExpectedPhonemes] = useState("");
   const [totalWrong, setTotalWrong] = useState(0);
   const [wrong, setWrong] = useState(0);
   const alphabets = [
@@ -166,9 +171,9 @@ const AlphabetTest = ({ isExited }) => {
     let fullPhrase = phrase1 + " " + alphabets[letterIndex].phrase[1];
     let phonemifyTranscript = phonemify(noDotTranscript);
 
-    // setYourPhonemes(phonemifyTranscript);
-    // setExpectedPhonemes(fullPhrase);
-    // setYourWords(transcript);
+    setYourPhonemes(phonemifyTranscript);
+    setExpectedPhonemes(fullPhrase);
+    setYourWords(transcript);
 
     // @ REMOVE SPACES FROM THE PHRASE AND TRANSCRIPT
     let noSpacePhrase = fullPhrase.replace(" ", "");
@@ -176,7 +181,7 @@ const AlphabetTest = ({ isExited }) => {
 
     let correct = 0;
     let score = 0;
-    let overall = noSpaceTranscript.length * 0.8;
+    let overall = noSpaceTranscript.length * 0.17;
 
     // @ CHECK IF ALL LETTERS IN THE EXPECTED PHRASE ARE IN THE WORDS SPOKEN BY USER
     for (let i = 0; i < noSpaceTranscript.length; i++) {
@@ -292,14 +297,16 @@ const AlphabetTest = ({ isExited }) => {
           </div>
 
           {/* TEST PURPOSE ONLY */}
-          {/* <div className="w-full py-20 fixed bottom-0 left-0 flex flex-col justify-center items-center text-3xl bg-white">
-            <h1 className={`text-black ${color[letterIndex]} pb-5`}>
-              Here is what the computer thinks you are saying
-            </h1>
-            <p className="text-bold">{yourWords}</p>
-            <p className="text-bold py-3">{yourPhonemes}</p>
-            <p className="text-bold">{expectedPhonemes}</p>
-          </div> */}
+          {isTesting && (
+            <div className="w-full py-20 fixed bottom-0 left-0 flex flex-col justify-center items-center text-3xl bg-white">
+              <h1 className={`text-black ${color[letterIndex]} pb-5`}>
+                Here is what the computer thinks you are saying
+              </h1>
+              <p className="text-bold">{yourWords}</p>
+              <p className="text-bold py-3">{yourPhonemes}</p>
+              <p className="text-bold">{expectedPhonemes}</p>
+            </div>
+          )}
         </>
       )}
     </div>
