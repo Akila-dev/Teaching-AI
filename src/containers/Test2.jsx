@@ -4,7 +4,7 @@ import { intro1, intro2, intro3 } from "../assets/intros";
 import { Header } from "../components";
 
 const Test2 = () => {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
   const [showIntro1, setShowIntro1] = useState(true);
   const [showIntro2, setShowIntro2] = useState(false);
   const [showIntro3, setShowIntro3] = useState(false);

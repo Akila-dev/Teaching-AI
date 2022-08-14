@@ -126,12 +126,23 @@ const AlphabetTest = ({ isExited }) => {
     window.SpeechRecognition || window.webkitSpeechRecognition;
 
   const recognition = new SpeechRecognition();
-  // recognition.interimResults = true;
+
+  recognition.onstart = function (e) {
+    recognition.continuous = true;
+    recognition.interimResults = true;
+  };
+
+  useEffect(() => {
+    setIsSpeaking(false);
+    recognition.stop();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isExited]);
 
   // SPEAKING STATE
   useEffect(() => {
     if (isSpeaking) {
       recognition.start();
+      console.log("continue");
     } else {
       recognition.stop();
     }
@@ -179,6 +190,7 @@ const AlphabetTest = ({ isExited }) => {
   };
 
   const playAudio = (audio) => {
+    setIsSpeaking(false);
     const music = new Audio(audio);
     music.playbackRate = 1;
     music.play();
