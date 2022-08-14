@@ -175,7 +175,7 @@ const AlphabetTest = ({ isExited }) => {
 
     let correct = 0;
     let score = 0;
-    // let overall = noSpaceTranscript.length;
+    let overall = noSpaceTranscript.length * 0.8;
 
     // @ CHECK IF ALL LETTERS IN THE EXPECTED PHRASE ARE IN THE WORDS SPOKEN BY USER
     for (let i = 0; i < noSpaceTranscript.length; i++) {
@@ -186,7 +186,7 @@ const AlphabetTest = ({ isExited }) => {
     }
 
     //@ IF 80% OF THE WORDS IN THE EXPECTED PHRASE ARE IN THE SPOKEN WORDS, THEN SET THE CORRECT VALUE TO 1
-    if (score + 1 >= noSpaceTranscript.length) {
+    if (score + overall >= noSpaceTranscript.length) {
       console.log("correct");
       console.log(score);
       correct += 1;
