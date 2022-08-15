@@ -331,7 +331,7 @@ const AlphabetTest = ({ isExited }) => {
         "SSR"
       );
     } else if (letterIndex === 1) {
-      special_phrase_function("B says", "BTS", "BCS", "BS", "bisas");
+      special_phrase_function("B says", "BTS", "BCS", "BS", "BSS", "bisas");
     } else if (letterIndex === 2) {
       special_phrase_function("see says", "C says", "CSS", "recess");
     } else if (letterIndex === 3) {
@@ -448,7 +448,7 @@ const AlphabetTest = ({ isExited }) => {
       }
     } else {
       setWrong((prev) => prev + 1);
-      if (wrong >= 300) {
+      if (wrong >= 3) {
         setTotalWrong((prev) => prev + 1);
         setWrong(0);
         console.log("exceeded");
