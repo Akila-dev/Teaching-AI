@@ -119,7 +119,7 @@ const Intro2 = () => {
   return (
     <>
       <div className="container">
-        <div className="flex flex-col-reverse lg:flex-row w-full justify-center lg:justify-start h-screen pt-[100px] md:pt-0">
+        <div className="flex flex-col-reverse lg:flex-row w-full justify-center lg:justify-start h-screen pt-[120px] md:pt-0">
           <div className="w-full lg:h-full flex justify-center lg:justify-start items-center my-10 md:my-0 z-1000 lg:p-0">
             <div className="rounded-full shadow-lg p-2 bg-white w-[100px] md:w-[130px] lg:mt-0 mt-[-85px] md:mt-[-65px] lg:w-[90%] xl:w-[80%]">
               <img

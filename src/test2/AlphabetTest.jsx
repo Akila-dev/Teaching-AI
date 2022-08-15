@@ -173,13 +173,17 @@ const AlphabetTest = ({ isExited }) => {
 
   // SPEECH RECOGNITION
   const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition ||
+    window.mozSpeechRecognition ||
+    window.msSpeechRecognition ||
+    window.oSpeechRecognition;
 
   const recognition = new SpeechRecognition();
 
   recognition.onstart = function (e) {
     recognition.continuous = false;
-    recognition.interimResults = false;
+    recognition.interimResults = true;
   };
 
   // @after listening to users speech
@@ -199,18 +203,33 @@ const AlphabetTest = ({ isExited }) => {
 
     let special_phrase_score = 0;
 
-    let special_phrase_function = (p1, p2, p3) => {
+    let special_phrase_function = (
+      p1 = "kfkfkfkfkkndndjdhdd",
+      p2 = "kfkfkfkfkkndndjdhdd",
+      p3 = "kfkfkfkfkkndndjdhdd",
+      p4 = "kfkfkfkfkkndndjdhdd",
+      p5 = "kfkfkfkfkkndndjdhdd",
+      p6 = "kfkfkfkfkkndndjdhdd",
+      p7 = "kfkfkfkfkkndndjdhdd"
+    ) => {
       let count = 0;
       let phrase1 = phonemify(p1);
       let phrase2 = phonemify(p2);
       let phrase3 = phonemify(p3);
+      let phrase4 = phonemify(p4);
+      let phrase5 = phonemify(p5);
+      let phrase6 = phonemify(p6);
+      let phrase7 = phonemify(p7);
       for (let i = 0; i < phonemifyTranscript.length; i++) {
         const letter = phonemifyTranscript[i];
         if (phrase1.includes(letter)) {
           count += 1;
         }
       }
-      if (count >= phrase1.length) {
+      if (
+        count >= phrase1.length &&
+        phonemifyTranscript.length === phrase1.length
+      ) {
         special_phrase_score = count;
       } else {
         count = 0;
@@ -221,7 +240,10 @@ const AlphabetTest = ({ isExited }) => {
           }
         }
       }
-      if (count >= phrase2.length) {
+      if (
+        count >= phrase2.length &&
+        phonemifyTranscript.length === phrase2.length
+      ) {
         special_phrase_score = count;
       } else {
         count = 0;
@@ -232,27 +254,182 @@ const AlphabetTest = ({ isExited }) => {
           }
         }
       }
-      if (count >= phrase3.length) {
+      if (
+        count >= phrase3.length &&
+        phonemifyTranscript.length === phrase3.length
+      ) {
+        special_phrase_score = count;
+      } else {
+        count = 0;
+        for (let i = 0; i < phonemifyTranscript.length; i++) {
+          const letter = phonemifyTranscript[i];
+          if (phrase4.includes(letter)) {
+            count += 1;
+          }
+        }
+      }
+      if (
+        count >= phrase4.length &&
+        phonemifyTranscript.length === phrase4.length
+      ) {
+        special_phrase_score = count;
+      } else {
+        count = 0;
+        for (let i = 0; i < phonemifyTranscript.length; i++) {
+          const letter = phonemifyTranscript[i];
+          if (phrase5.includes(letter)) {
+            count += 1;
+          }
+        }
+      }
+      if (
+        count >= phrase5.length &&
+        phonemifyTranscript.length === phrase5.length
+      ) {
+        special_phrase_score = count;
+      } else {
+        count = 0;
+        for (let i = 0; i < phonemifyTranscript.length; i++) {
+          const letter = phonemifyTranscript[i];
+          if (phrase6.includes(letter)) {
+            count += 1;
+          }
+        }
+      }
+      if (
+        count >= phrase6.length &&
+        phonemifyTranscript.length === phrase6.length
+      ) {
+        special_phrase_score = count;
+      } else {
+        count = 0;
+        for (let i = 0; i < phonemifyTranscript.length; i++) {
+          const letter = phonemifyTranscript[i];
+          if (phrase7.includes(letter)) {
+            count += 1;
+          }
+        }
+      }
+      if (
+        count >= phrase7.length &&
+        phonemifyTranscript.length === phrase7.length
+      ) {
         special_phrase_score = count;
       }
     };
 
     let score = 0;
 
-    if (letterIndex === 1) {
-      special_phrase_function("He says ah", "A says ah", "A says uh");
+    if (letterIndex === 0) {
+      special_phrase_function(
+        "He says ah",
+        "A says ah",
+        "A says uh",
+        "He says",
+        "SSS",
+        "ace sa",
+        "SSR"
+      );
+    } else if (letterIndex === 1) {
+      special_phrase_function("B says", "BTS", "BCS", "BS", "bisas");
+    } else if (letterIndex === 2) {
+      special_phrase_function("see says", "C says", "CSS", "recess");
+    } else if (letterIndex === 3) {
+      special_phrase_function("D says", "DSS", "this is");
+    } else if (letterIndex === 4) {
+      special_phrase_function("he says", "it's sa", "it says", "SSS");
+    } else if (letterIndex === 5) {
+      special_phrase_function("f says", "xx", "abscess", "obsessed");
+    } else if (letterIndex === 6) {
+      special_phrase_function(
+        "g says good",
+        "jesus",
+        "jesus good",
+        "jesus group"
+      );
+    } else if (letterIndex === 7) {
+      special_phrase_function("each says", "page says", "age says", "hcs");
+    } else if (letterIndex === 8) {
+      special_phrase_function("i says he", "i said y", "i said it");
     } else if (letterIndex === 10) {
-      special_phrase_function("OK, says", "cases", "cases says");
+      special_phrase_function(
+        "OK, says",
+        "cases",
+        "cases says",
+        "KZ",
+        "OK, says",
+        "cases",
+        "cases says"
+      );
+    } else if (letterIndex === 11) {
+      special_phrase_function("else says", "else SE", "elsa's");
+    } else if (letterIndex === 12) {
+      special_phrase_function("m says hm", "m says hmm", "m says um", "MSS");
+    } else if (letterIndex === 13) {
+      special_phrase_function("and says", "nss", "answers", "n says");
+    } else if (letterIndex === 14) {
+      special_phrase_function("o says ah", "o SSR", "o SAR", "ulcers");
+    } else if (letterIndex === 15) {
+      special_phrase_function("peace says", "pieces");
+    } else if (letterIndex === 16) {
+      special_phrase_function("q says", "cute desk", "cutest");
     } else if (letterIndex === 17) {
-      special_phrase_function("are says", "are says are", "our says");
+      special_phrase_function(
+        "are says",
+        "are says are",
+        "our says",
+        "Authur's room",
+        "RSS",
+        "arce's ru"
+      );
     } else if (letterIndex === 18) {
-      special_phrase_function("Access", "Assess", "Access");
+      special_phrase_function(
+        "Access",
+        "Assess",
+        "Access",
+        "Assess",
+        "Assess",
+        "Access",
+        "Assess"
+      );
+    } else if (letterIndex === 19) {
+      special_phrase_function(
+        "see says T",
+        "tee says T",
+        "speed test",
+        "incest",
+        "recessed",
+        "pieces"
+      );
+    } else if (letterIndex === 20) {
+      special_phrase_function(
+        "you says ah",
+        "you says uh",
+        "uses",
+        "you said",
+        "uses her"
+      );
+    } else if (letterIndex === 21) {
+      special_phrase_function("v says", "visas", "recess", "b cells");
+    } else if (letterIndex === 22) {
+      special_phrase_function("w says what", "wcsv", "WCS");
+    } else if (letterIndex === 24) {
+      special_phrase_function(
+        "y says yeah",
+        "weiss SJ",
+        "y says you",
+        "why says"
+      );
+    } else if (letterIndex === 25) {
+      special_phrase_function("z says", "recess", "Jesus", "ZZ");
     }
 
-    for (let i = 0; i < phonemifyTranscript.length; i++) {
-      const letter = phonemifyTranscript[i];
-      if (fullPhrase.includes(letter)) {
-        score += 1;
+    if (phonemifyTranscript.length === fullPhrase.length) {
+      for (let i = 0; i < phonemifyTranscript.length; i++) {
+        const letter = phonemifyTranscript[i];
+        if (fullPhrase.includes(letter)) {
+          score += 1;
+        }
       }
     }
 
@@ -271,7 +448,7 @@ const AlphabetTest = ({ isExited }) => {
       }
     } else {
       setWrong((prev) => prev + 1);
-      if (wrong >= 3) {
+      if (wrong >= 300) {
         setTotalWrong((prev) => prev + 1);
         setWrong(0);
         console.log("exceeded");
