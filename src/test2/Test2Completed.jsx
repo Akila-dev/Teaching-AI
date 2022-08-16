@@ -41,7 +41,7 @@ const Test2Completed = ({ restart, status }) => {
             Re-Take Test
           </Link>
           <Link
-            to="/test2"
+            to="/"
             onClick={restart}
             className="text-center rounded-lg shadow-lg tracking-widest bg-blue-800 text-white text-2xl uppercase py-3 w-full md:1/2 lg:w-full pulse-blue xl:w-[470px]"
           >

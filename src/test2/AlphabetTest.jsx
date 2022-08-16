@@ -331,18 +331,24 @@ const AlphabetTest = ({ isExited }) => {
         "SSR"
       );
     } else if (letterIndex === 1) {
-      special_phrase_function("B says", "BTS", "BCS", "BS", "BSS", "bisas");
+      special_phrase_function("B says Buh", "BTS", "BCS", "BS", "BSS", "bisas");
     } else if (letterIndex === 2) {
       special_phrase_function("see says", "C says", "CSS", "recess");
     } else if (letterIndex === 3) {
-      special_phrase_function("D says", "DSS", "this is");
+      special_phrase_function(
+        "D says",
+        "DSS",
+        "this is",
+        "this says",
+        "deceased"
+      );
     } else if (letterIndex === 4) {
       special_phrase_function("he says", "it's sa", "it says", "SSS");
     } else if (letterIndex === 5) {
-      special_phrase_function("f says", "xx", "abscess", "obsessed");
+      special_phrase_function("F says", "xx", "abscess", "obsessed");
     } else if (letterIndex === 6) {
       special_phrase_function(
-        "g says good",
+        "G says good",
         "jesus",
         "jesus good",
         "jesus group"
@@ -350,12 +356,17 @@ const AlphabetTest = ({ isExited }) => {
     } else if (letterIndex === 7) {
       special_phrase_function("each says", "page says", "age says", "hcs");
     } else if (letterIndex === 8) {
-      special_phrase_function("i says he", "i said y", "i said it");
+      special_phrase_function(
+        "I says he",
+        "I said y",
+        "I said it",
+        "I says it"
+      );
     } else if (letterIndex === 10) {
       special_phrase_function(
         "OK, says",
         "cases",
-        "cases says",
+        "Case says",
         "KZ",
         "OK, says",
         "cases",
@@ -364,9 +375,17 @@ const AlphabetTest = ({ isExited }) => {
     } else if (letterIndex === 11) {
       special_phrase_function("else says", "else SE", "elsa's");
     } else if (letterIndex === 12) {
-      special_phrase_function("m says hm", "m says hmm", "m says um", "MSS");
+      special_phrase_function(
+        "M says hm",
+        "M says hmm",
+        "M says umm",
+        "M says um",
+        "Am says um",
+        "MSS",
+        "Am, says Umm"
+      );
     } else if (letterIndex === 13) {
-      special_phrase_function("and says", "nss", "answers", "n says");
+      special_phrase_function("And says Umm", "NSS", "answers", "n says umm");
     } else if (letterIndex === 14) {
       special_phrase_function("o says ah", "o SSR", "o SAR", "ulcers");
     } else if (letterIndex === 15) {
@@ -380,7 +399,8 @@ const AlphabetTest = ({ isExited }) => {
         "our says",
         "Authur's room",
         "RSS",
-        "arce's ru"
+        "arce's ru",
+        "Our, says rue"
       );
     } else if (letterIndex === 18) {
       special_phrase_function(
@@ -398,8 +418,7 @@ const AlphabetTest = ({ isExited }) => {
         "tee says T",
         "speed test",
         "incest",
-        "recessed",
-        "pieces"
+        "recessed"
       );
     } else if (letterIndex === 20) {
       special_phrase_function(
@@ -407,21 +426,25 @@ const AlphabetTest = ({ isExited }) => {
         "you says uh",
         "uses",
         "you said",
-        "uses her"
+        "uses her",
+        "you says"
       );
     } else if (letterIndex === 21) {
       special_phrase_function("v says", "visas", "recess", "b cells");
     } else if (letterIndex === 22) {
       special_phrase_function("w says what", "wcsv", "WCS");
+    } else if (letterIndex === 23) {
+      special_phrase_function("excess", "access");
     } else if (letterIndex === 24) {
       special_phrase_function(
-        "y says yeah",
+        "Y says yeah",
         "weiss SJ",
-        "y says you",
-        "why says"
+        "Y says you",
+        "why says",
+        "Why says?"
       );
     } else if (letterIndex === 25) {
-      special_phrase_function("z says", "recess", "Jesus", "ZZ");
+      special_phrase_function("Z says", "recess", "Jesus", "ZZ", "This says");
     }
 
     if (phonemifyTranscript.length === fullPhrase.length) {
@@ -448,7 +471,7 @@ const AlphabetTest = ({ isExited }) => {
       }
     } else {
       setWrong((prev) => prev + 1);
-      if (wrong >= 3) {
+      if (wrong >= 2) {
         setTotalWrong((prev) => prev + 1);
         setWrong(0);
         console.log("exceeded");
@@ -519,9 +542,11 @@ const AlphabetTest = ({ isExited }) => {
         <>
           <div className="center-text z-1000">
             {isSpeaking ? (
-              <div className="p-5 lg:p-7 cursor-pointer bg-white rounded-full shadow-lg pulse-blue border-[1px]">
+              <div
+                className={`p-5 lg:p-7 cursor-pointer ${bg_color[letterIndex]} rounded-full border-white shadow-lg pulse-blue border-[1px]`}
+              >
                 <BsFillMicFill
-                  className={`${color[letterIndex]} text-[45px] lg:text-[55px]`}
+                  className={`text-white text-[45px] lg:text-[55px]`}
                   onClick={() => setIsSpeaking(false)}
                 />
               </div>
